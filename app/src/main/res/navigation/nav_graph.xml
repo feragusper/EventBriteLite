@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/eventListFragmentDest">
+
+    <fragment
+        android:id="@+id/eventListFragmentDest"
+        android:name="com.feragusper.eventbritelite.ui.EventListFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_event_list">
+
+        <action
+            android:id="@+id/eventListFragmentDest_to_eventDetailFragmentDest"
+            app:destination="@id/eventDetailFragmentDest" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventDetailFragmentDest"
+        android:name="com.feragusper.eventbritelite.ui.EventDetailFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_event_detail">
+
+        <deepLink app:uri="https://www.eventbrite.com.ar/e/{eventId}" />
+
+        <argument
+            android:name="eventId"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="event"
+            type="com.feragusper.eventbritelite.model.Event" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="@{clickListener}"
+        android:paddingTop="@dimen/margin_normal"
+        android:paddingBottom="@dimen/margin_normal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/eventImage"
+            android:layout_width="@dimen/image_thumbnail_size"
+            android:layout_height="@dimen/image_thumbnail_size"
+            android:layout_marginStart="@dimen/card_side_margin"
+            android:layout_marginEnd="@dimen/card_side_margin"
+            app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="center"
+                app:imageFromEvent="@{event}"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/ic_event" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/eventStartDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{event.startGMTDate}"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/orange"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/eventImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="20/10/2021" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/eventName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{event.name}"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/eventImage"
+            app:layout_constraintTop_toBottomOf="@id/eventStartDate"
+            tools:text="Event Name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
