@@ -11,6 +11,7 @@ import com.feragusper.eventbritelite.state.Resource
 import com.feragusper.eventbritelite.usecase.FetchEventsUseCase
 import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
@@ -84,7 +85,11 @@ class EventListViewModelTest {
     @Test
     fun fetchEventsError() {
         mainCoroutineRule.runBlockingTest {
-            BDDMockito.given(fetchEventsUseCase()).willThrow(RuntimeException())
+            BDDMockito.given(fetchEventsUseCase()).willReturn(
+                flow {
+                    throw RuntimeException()
+                }
+            )
 
             eventListViewModel.fetchEvents()
 
